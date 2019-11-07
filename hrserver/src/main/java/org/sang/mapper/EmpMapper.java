@@ -31,4 +31,6 @@ public interface EmpMapper {
     int addEmps(@Param("emps") List<Employee> emps);
 
     List<Employee> getEmployeeByPageShort(@Param("start") int start, @Param("size") Integer size);
+
+    Employee getDetailById(@Param("id") String id);
 }

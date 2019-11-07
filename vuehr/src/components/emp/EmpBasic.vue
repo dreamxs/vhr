@@ -282,7 +282,7 @@
                 <el-button @click="showEditEmpView(scope.row)" style="padding: 3px 4px 3px 4px;margin: 2px"
                            size="mini">编辑
                 </el-button>
-                <el-button style="padding: 3px 4px 3px 4px;margin: 2px" type="primary"
+                <el-button style="padding: 3px 4px 3px 4px;margin: 2px" type="primary" @click="showDetial(scope.row)"
                            size="mini">查看高级资料
                 </el-button>
                 <el-button type="danger" style="padding: 3px 4px 3px 4px;margin: 2px" size="mini"
@@ -898,6 +898,24 @@
         this.dialogVisible = true;
         console.log(this.emp)
       },
+
+      showDetial(row){
+        console.log(row)
+        this.dialogTitle = "查看员工";
+        this.emp = row;
+        console.log(this.emp)
+        this.getRequest("/employee/basic/emp/"+1413).then(resp => {
+          if (resp && resp.status == 200) {
+         //   this.$router.push({path: '/employee/basic/detail'});
+            let routeUrl = this.$router.resolve({
+              path: "/employee/basic/detail",
+              query: {id:1413}
+            });
+            window.open(routeUrl .href, '_blank');
+          }
+        })
+      },
+
       showAddEmpView() {
         this.dialogTitle = "添加员工";
         this.dialogVisible = true;

@@ -67,7 +67,7 @@ public class EmpBasicController {
         if (empService.addEmp(employee) == 1) {
             List<Position> allPos = positionService.getAllPos();
             for (Position allPo : allPos) {
-                if (allPo.getId() == employee.getPosId()) {
+                if (allPo.getId().equals(employee.getPosId()))  {
                     employee.setPosName(allPo.getName());
                 }
             }
@@ -77,6 +77,13 @@ public class EmpBasicController {
         }
         return RespBean.error("添加失败!");
     }
+
+    @RequestMapping(value = "/emp/{id}" , method = RequestMethod.GET)
+    public Employee getDetailById(@PathVariable("id") String id){
+
+        return empService.getDetailById(id);
+    }
+
 
     @RequestMapping(value = "/emp", method = RequestMethod.PUT)
     public RespBean updateEmp(Employee employee) {

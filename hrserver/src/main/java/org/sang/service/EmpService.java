@@ -100,6 +100,10 @@ public class EmpService {
 
     public List<Employee> getEmployeeByPageShort(Integer page, Integer size) {
         int start = (page - 1) * size;
-        return empMapper.getEmployeeByPageShort(start,size);
+        return empMapper.getEmployeeByPageShort(start, size);
+    }
+
+    public Employee getDetailById(String id) {
+        return empMapper.getDetailById(id);
     }
 }
